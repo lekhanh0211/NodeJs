@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=3, initial-scale=1.0" />
+    <title>User List</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      media="screen"
+      href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div>
+            <form action="/create-user" method="POST">
+              <h3>Thêm mới người dùng</h3>
+              <div>
+                <label>First Name:</label>
+                <input type="text" name="Name" />
+              </div>
+              <div>
+                <label>Last Name:</label>
+                <input type="text" name="UserName" />
+              </div>
+              <div>
+                <label>Email:</label>
+                <input type="email" name="Password" />
+              </div>
+              <div>
+                <label>Email:</label>
+                <input type="checkbox" name="Status" />
+              </div>
+              <div>
+                <button type="submit" class="btn-submit">Thêm mới</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h3>List User</h3>
+          <table class="table border-bordered">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>UserName</th>
+                <th>Password</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(let i=0; i < dataUser.length; i++) {%>
+              <tr>
+                <td><%= dataUser[i].Id %></td>
+                <td><%= dataUser[i].Name %></td>
+                <td><%= dataUser[i].UserName %></td>
+                <td><%= dataUser[i].Password %></td>
+                <td><%= dataUser[i].Status %></td>
+                <td>
+                  <a href="" class="btn btn-xs btn-success">Detail</a>
+                  <a href="" class="btn btn-xs btn-primary">Update</a>
+                  <a href="" class="btn btn-xs btn-danger">Delete</a>
+                </td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  </body>
+</html>

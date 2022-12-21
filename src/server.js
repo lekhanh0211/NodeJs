@@ -17,7 +17,7 @@ const port = process.env.PORT;
 
 app.use((req,res)=>{
   console.log('>> Run into my middleware');
-  console.log(req);
+  console.log(req.method);
 })
 
 //note : Setup view engine

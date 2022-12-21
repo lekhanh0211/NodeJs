@@ -33,10 +33,16 @@ let createNewUser = async (req, res) => {
     [Name, UserName, Password, Status]
   );
 
-  return res.redirect("/user")
+  return res.redirect("/user");
+};
+let getDetailPage = async (req, res) => {
+  let uId = req.params.id;
+  let [user] = await pool.execute(`select * from user where id = ?`, [uId]);
+  return res.send(JSON.stringify(user));
 };
 module.exports = {
   //để export nhiều phần tử cùng 1 lúc
   getUserPage,
   createNewUser,
+  getDetailPage,
 };

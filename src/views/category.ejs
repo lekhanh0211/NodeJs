@@ -11,6 +11,10 @@
       media="screen"
       href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"
     />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+  />
   </head>
   <body>
     <div class="container">
@@ -35,8 +39,12 @@
                 name="Url"
               />
             </div>
+            <div class="checkbox">
+              <label><input type="checkbox" name="Status">Hoạt động</label>
+            </div>
             
-            <button type="submit" class="btn btn-info">Thêm mới</button>
+            <button type="submit" class="btn btn-success">Thêm mới</button>
+            <button type="reset" class="btn btn-info">Làm mới</button>
             <fieldset>
           </form>
         </div>
@@ -48,6 +56,7 @@
               <tr>
                 <th>Id</th>
                 <th>Name</th>
+                <th>Url</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>
@@ -57,7 +66,8 @@
               <tr>
                 <td><%= dataCate[i].Id %></td>
                 <td><%= dataCate[i].Name %></td>
-                <td><%= dataCate[i].Status %></td>
+                <td><%= dataCate[i].Url %></td>
+                <td><%= dataCate[i].Status?"Ẩn":"Hiện" %></td>
                 <td>
                   <a
                     href="/detail/category/<%= dataCate[i].Id %>"
@@ -65,7 +75,12 @@
                     >Detail</a
                   >
                   <a href="" class="btn btn-xs btn-info">Update</a>
-                  <a href="" class="btn btn-xs btn-warning">Delete</a>
+                  <form method="post" action="/deleteCate">
+                    <!-- <a href="" class="btn btn-xs btn-warning">Delete</a> -->
+                    <input type="text" hidden value="<%= dataCate[i].Id %>" name="Id" />
+                    <button type="submit" class="btn btn-xs btn-warning" onclick="return confirm('Bạc có chắc chắn muốn xóa?')" ><i class="fa-solid fa-trash"></i
+                      ></button>
+                  </form>
                 </td>
               </tr>
               <% } %>

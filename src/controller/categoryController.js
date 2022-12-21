@@ -29,22 +29,34 @@ let getCatePage = async (req, res) => {
 };
 let getDetailPage = async (req, res) => {
   let catId = req.params.id;
-  let [cate] = await pool.execute(`select * from category where id = ?`, [catId]);
+  let [cate] = await pool.execute(`select * from category where id = ?`, [
+    catId,
+  ]);
   return res.send(JSON.stringify(cate));
 };
 let createNewCate = async (req, res) => {
-    // let { Name, Url } = req.body;
+  let { Name, Url, Status } = req.body;
 
-    // await pool.execute('insert into category(Name, Url) values (?, ?, ?)',
-    //     [Name, Url]);
+  await pool.execute("insert into category(Name, Url,Status) values (?, ?,?)", [
+    Name,
+    Url,
+    Status,
+  ]);
 
-   // return res.redirect('/category');
-   console.log('>>Check Requesy',req.body)
-    return res.send('Check post');
+  // return res.redirect('/category');
+  // console.log('>>Check Requesy',req.body)
+  return res.redirect("/category");
+};
 
-}
+let DeleteCate = async (req, res) => {
+  let cId = req.body.Id;
+  await pool.execute("DELETE FROM category where Id=? ", [cId]);
+
+  return res.redirect("/category");
+};
 module.exports = {
   getCatePage,
   getDetailPage,
-  createNewCate 
+  createNewCate,
+  DeleteCate,
 };

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>List Product</title>
+    <!-- Latest compiled and minified CSS & JS -->
+    <link
+      rel="stylesheet"
+      media="screen"
+      href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+          <h3>Thêm mới sản phẩm</h3>
+
+          <form action="/createProduct" method="POST">
+            <div class="form-group">
+              <label for="Name">Product Name:</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder=""
+                name="Name"
+              />
+            </div>
+            <div class="form-group">
+                <label for="CatIId">Category Id:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder=""
+                  name="CatId"
+                />
+              </div>
+              <div class="form-group">
+                <label for="Name">Price :</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="Price"
+                />
+              </div>
+              <div class="form-group">
+                <label for="SalePrice">Sale Price:</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder=""
+                  name="SalePrice"
+                />
+              </div>
+              <div class="form-group">
+                <label for="Image">Image:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder=""
+                  name="Image"
+                />
+              </div>
+              <div class="form-group">
+                <label for="MoreImage">More Image:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder=""
+                  name="MoreImage"
+                />
+              </div>
+           
+            <div class="checkbox">
+              <label
+                ><input type="checkbox" name="Status" /> Hoạt động </label
+              >
+            </div>
+            <button type="submit" class="btn btn-success ">Thêm mới</button>
+            <button type="reset" class="btn btn-info ">Làm mới</button>
+          </form>
+        </div>
+
+        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+          Danh sách sản phẩm
+          <br />
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Category Id</th>
+                <th>Price</th>
+                <th>Sale Price</th>
+                <th>Image</th>
+                <th>More Image</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(let i = 0; i < listPro.length ;i++) {%>
+              <tr>
+                <td><%= listPro[i].Id %></td>
+                <td><%= listPro[i].Name %></td>
+                <td><%= listPro[i].CatId %></td>
+                <td><%= listPro[i].Price %></td>
+                <td><%= listPro[i].SalePrice %></td>
+                <td><%= listPro[i].Image %></td>
+                <td><%= listPro[i].MoreImgae %></td>
+                <td><%= listPro[i].Status?"Hiện":"Ẩn" %></td>
+                <td>
+                  <a
+                    href="/detail/product/<%= listPro[i].Id %>"
+                    class="btn btn-xs btn-success"
+                    ><i class="fa-solid fa-circle-info"></i
+                  ></a>
+                  <a href="" class="btn btn-xs btn-info"
+                    ><i class="fa-solid fa-pen-to-square"></i
+                  ></a>
+                  <a href="" class="btn btn-xs btn-warning"
+                    ><i class="fa-solid fa-trash"></i
+                  ></a>
+                </td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  </body>
+</html>
